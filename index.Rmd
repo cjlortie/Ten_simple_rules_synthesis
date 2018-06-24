@@ -15,14 +15,27 @@ output:
 <br>
 
 <center>
-![](./rules.jpg)
+![](./10.jpg)
 </center>  
 
 ###Purpose  
 The primary goal here is to highlight that simple rules in science can strongly inform novice and expert scientists alike and provide a rapid roadmap to advance understanding for a specific topic.  The impact is explored using conventional bibliometric estimates.  Independent of the impact of these contributions to the peer-reviewed literature, this paper format can provide an overview of a topic and function as a mechanism to synthesize evidence.  With the significant volume of scientific resoures available to the community including publications, data, blog posts, texts, vignettes, and technical resources, synthesis tools that succinctly direct, aggregate, and inform readers are increasingly important. 
 
 ###Ten simple rules for rules
+A summary of the salient elements common across all contributions.  
 
+1. Be useful.
+2. Be clear.
+3. Provide actionable rules .
+4. List the best resources for additional research.
+5. Be open.
+6. Describe limitations and challenges of the rules provided.
+7. Highlight the need within the field for synthesis.
+8. Aggregate research and expert knowledge.
+9. Be succinct.
+10. Provide an outcome.
+
+Contrast this topological assessment across all papers with the specific ten simple rules for simple rules paper. Consider using a checklist to score each and every contribution published to date with the proposed meta-rules (original and these).
 
 ###Data
 ```{r, data, warning=FALSE, message=FALSE}
@@ -39,4 +52,7 @@ data
 2. Presentations and slide decks that are often used to communicate and further share the rules.
 3. Secure altmetric measures of performance for each paper, i.e. 22,000 views on a given ten simple rules papers is a significant contribution to the community.
 4. Summarize the success of the most 'successful' papers, highlight salient elements across all papers, and do a narrative review of summary of the breadth of the field.
-5. Scrape first author data for each publication.
+5. Scrape first author data for each publication.  
+6. Map countries associated with each contribution.
+7. Provide an infographic.
+8. Develop a checklist using ten simple rules for rules.

@@ -40,12 +40,64 @@ Contrast this topological assessment across all papers with the specific ten sim
 ###Data
 ```{r, data, warning=FALSE, message=FALSE}
 library(tidyverse)
-data <- read_csv("data/ten.simple.rules.csv") #bibliometric returns from the Web of Science
+library(skimr)
+data <- read_csv("data/ten.simple.rules.scored.csv") #bibliometric returns from the Web of Science on June 25th, 2018
+
 data <- data %>%
-  select(paper, authors, journal, year, DOI, citations, citations.yr)
+  select(title, authors, journal, year, DOI, total.citations, citations.yr, category)
 data
+summary(data)
+
+#PCOMPBIO only
+pcomp <- data %>%
+  filter(journal == "PLOS COMPUTATIONAL BIOLOGY")
+summary(pcomp)
+skim(pcomp)
+
+#quick count within categories####
+#Categories were assigned to general domains of the scientific process using the abstracts and familiarity with each publication (but not with detailed inspection). A secondary classification was also applicable in many instances, and the assignments provided were the primary focus of the paper - i.e. collaboration in a specific field would be classified as collaboration only using this schema.
+
+cats <- data %>%
+  group_by(year, category) %>%
+  count()
+cats
 
 ```
+
+
+###Viz
+```{r, viz, warning=FALSE, message=FALSE}
+#all pcombbiol papers####
+ggplot(pcomp, aes(year, total.citations)) +
+  geom_line(color = "steelblue", size = 3) +
+  xlim(c(2005, 2020)) +
+  labs(x = "year", y = "total citations per paper")
+
+ggplot(pcomp, aes(as.character(year), citations.yr)) +
+  geom_boxplot() +
+  labs(x = "year", y = "citations per paper per year")
+
+#by category
+ggplot(cats, aes(category, n)) +
+  geom_boxplot() +
+  labs(x = "domain classification", y = "number of publications") +
+  scale_y_continuous(breaks=seq(0,10,2)) +
+  coord_flip() 
+
+ggplot(pcomp, aes(year, total.citations, color = category)) +
+  geom_line(size = 3) +
+  xlim(c(2005, 2020)) +
+  labs(x = "year", y = "total citations per paper", color = "") +
+  scale_color_brewer(palette = "Paired")
+
+ggplot(pcomp, aes(as.character(year), citations.yr, color = category)) +
+  geom_boxplot() +
+  labs(x = "year", y = "citations per paper per year", color = "") +
+  scale_color_brewer(palette = "Paired")
+
+
+```
+
 
 ###Ideas
 1. Uptake in teaching contexts.
@@ -56,3 +108,11 @@ data
 6. Map countries associated with each contribution.
 7. Provide an infographic.
 8. Develop a checklist using ten simple rules for rules.
+
+###Observations
+1. Currently, there is a total of 99 'ten simple rules' publications with 94 in PCOMPBIO.
+2. The first paper in PCOMPBIO was published in 2005, the mean of total citations per instance is 7.3 (median 4), and the mean citations per year per instance is 1.3.  
+3. There was peak in citation activity centered around the year 2013 in both total citations and citations per paper.  
+4. Ten simple rules publications directly related to computation are very successful in securing citations.  
+5. There are nonetheless many categories of ten simple rules contributions that synthesize almost every aspect of the scientific progress from mechanistic details of research to professional development.  
+

@@ -44,7 +44,7 @@ library(skimr)
 data <- read_csv("data/ten.simple.rules.scored.csv") #bibliometric returns from the Web of Science on June 25th, 2018
 
 data <- data %>%
-  select(title, authors, journal, year, DOI, total.citations, citations.yr, category)
+  select(title, authors, journal, year, DOI, total.citations, citations.yr, category, views, shares, saves)
 data
 summary(data)
 

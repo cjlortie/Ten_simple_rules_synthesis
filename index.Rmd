@@ -77,6 +77,18 @@ ggplot(pcomp, aes(as.character(year), citations.yr)) +
   geom_boxplot() +
   labs(x = "year", y = "citations per paper per year")
 
+#views
+ggplot(pcomp, aes(year, views)) +
+  geom_line(color = "steelblue", size = 3) +
+  xlim(c(2005, 2020)) +
+  labs(x = "year", y = "total views per paper") +
+  scale_y_continuous(labels = scales::comma)
+
+ggplot(pcomp, aes(as.character(year), (views/(2018-year)))) +
+  geom_boxplot() +
+  labs(x = "year", y = "views per year") +
+  scale_y_continuous(labels = scales::comma)
+
 #by category
 ggplot(cats, aes(category, n)) +
   geom_boxplot() +
@@ -95,6 +107,19 @@ ggplot(pcomp, aes(as.character(year), citations.yr, color = category)) +
   labs(x = "year", y = "citations per paper per year", color = "") +
   scale_color_brewer(palette = "Paired")
 
+#views
+ggplot(pcomp, aes(year, views, color = category)) +
+  geom_line(size = 3) +
+  xlim(c(2005, 2020)) +
+  labs(x = "year", y = "total views per paper", color = "") +
+  scale_color_brewer(palette = "Paired") +
+  scale_y_continuous(labels = scales::comma)
+
+ggplot(pcomp, aes(as.character(year), (views/(2018-year)), color = category)) +
+  geom_boxplot() +
+  labs(x = "year", y = "views per year", color = "") +
+  scale_color_brewer(palette = "Paired") +
+  scale_y_continuous(labels = scales::comma)
 
 ```
 
